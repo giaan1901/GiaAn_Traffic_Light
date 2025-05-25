@@ -91,12 +91,35 @@ public:
   }
 
   void WalkingState() {
-    for (int i = 2; i >= 0; i--) {
+    NormalState();
+    CounterLight(0, 0, 1);
+    for (int i = 3; i >= 0; i--) {
       MainLight(0, 1, 0);
-      CounterLight(0, 0, 1);
       delay(1000);
       MainLight(0, 0, 0);
       delay(1000);
+    }
+    NormalState();
+  }
+
+  void HandState(int HandState) {
+    switch (HandState & 1) {
+      case 0:
+        MainLight(0, 1, 0);
+        CounterLight(0, 1, 0);
+        delay(2000);
+        MainLight(1, 0, 0);
+        CounterLight(0, 0, 1);
+        delay(2000);
+        break;
+      case 1:
+        MainLight(0, 1, 0);
+        CounterLight(0, 0, 1);
+        delay(2000);
+        MainLight(0, 0, 1);
+        CounterLight(1, 0, 0);
+        delay(2000);
+        break;
     }
   }
 };
